@@ -14,8 +14,10 @@ import {
   Database,
   FileText,
   Activity,
+  LogOut,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/components/AuthGuard';
 
 const icons = {
   BarChart3,
@@ -47,6 +49,7 @@ const NAV_ITEMS = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { logout } = useAuth();
 
   return (
     <aside className="w-56 shrink-0 border-r bg-card flex flex-col h-full">
@@ -75,8 +78,15 @@ export default function Sidebar() {
           );
         })}
       </nav>
-      <div className="p-4 border-t text-xs text-muted-foreground">
-        Big Kitchen ERP v0.1
+      <div className="p-3 border-t space-y-2">
+        <button
+          onClick={logout}
+          className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-red-500 hover:bg-red-50 transition-colors w-full"
+        >
+          <LogOut className="h-4 w-4" />
+          ออกจากระบบ
+        </button>
+        <div className="text-xs text-muted-foreground px-3">Big Kitchen ERP v1.0</div>
       </div>
     </aside>
   );
