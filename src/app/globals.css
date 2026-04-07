@@ -128,3 +128,55 @@
     @apply font-sans;
   }
 }
+
+/* Print styles for daily production plan report */
+@media print {
+  body {
+    background: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide sidebar and non-print elements */
+  aside,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Make main content take full width */
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Remove card shadow/ring for clean print */
+  [data-slot='card'] {
+    box-shadow: none !important;
+    ring: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure table borders are visible */
+  table {
+    border-collapse: collapse !important;
+  }
+
+  th,
+  td {
+    border: 1px solid #d1d5db !important;
+    padding: 4px 8px !important;
+  }
+
+  /* Page margins */
+  @page {
+    margin: 1cm;
+    size: A4 landscape;
+  }
+
+  /* Avoid breaking inside rows */
+  tr {
+    page-break-inside: avoid;
+  }
+}
